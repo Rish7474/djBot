@@ -4,14 +4,16 @@ ACTION_LIST = {
             STATUS_HANDLE: (songName, user) => {
                 return [0, `${songName} was added to the queue (requested by ${user})`];
             },
-            INVOKE_LIST: ['A','ADD', 'P', 'PLAY', 'START']
+            INVOKE_LIST: ['ADD', 'PLAY', 'START'],
+            SHORTCUT_INVOKE: ['A', 'P']
     },
     SKIP:{
             TYPE: 'SKIP',
             STATUS_HANDLE: (user) => {
                 return [0, `${user} skipped the current song`];
             },
-            INVOKE_LIST: ['S', 'SKIP']
+            INVOKE_LIST: ['S', 'SKIP'],
+            SHORTCUT_INVOKE: ['S']
     }, 
     EIGTH_D:{
             TYPE: '8D',
@@ -21,6 +23,7 @@ ACTION_LIST = {
                 return [0, '8D filter will be off for rest of the songs in the queue'];
             },
             INVOKE_LIST: ['8D'],
+            SHORTCUT_INVOKE: undefined,
             STATUS_FLAG: (switchInput) => {
                 return switchInput == undefined || switchInput == 'ON';
             }
@@ -30,14 +33,16 @@ ACTION_LIST = {
             STATUS_HANDLE: () => {
                 return [1, "The requested command is invalid"];
             },
-            INVOKE_LIST: undefined
+            INVOKE_LIST: undefined,
+            SHORTCUT_INVOKE: undefined
     },
     NULL:{
             TYPE: 'NULL',
             STATUS_HANDLE: () => {
                 return [undefined, undefined]
             },
-            INVOKE_LIST: undefined
+            INVOKE_LIST: undefined,
+            SHORTCUT_INVOKE: undefined
     }
 };
 

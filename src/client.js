@@ -25,7 +25,7 @@ client.on('message', (message) => {
             let cmdQuery = message.content;
             status = actions.processNaturalLanguage(message, cmdQuery, process.env.BOT_NAME);
             if(status[0] != undefined)
-                message.channel.send(status[i]);
+                message.channel.send(status[1]);
         }
             
     }

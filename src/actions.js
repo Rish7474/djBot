@@ -16,18 +16,15 @@ class ActionHandler {
         [cmd, parameter] = this._getTokens(cmdQuery);
 
         switch(true) {
-            case ACTION_LIST.ADD.INVOKE_LIST.includes(cmd):
+            case ACTION_LIST.ADD.INVOKE_LIST.includes(cmd) || ACTION_LIST.ADD.SHORTCUT_INVOKE.includes(cmd):
                 if(parameter != undefined) {
                     this.player.play(message, parameter, true);
                     return ACTION_LIST.ADD.STATUS_HANDLE(parameter.toLowerCase(), message.author.username);
                 }
                 break;
-            case ACTION_LIST.SKIP.INVOKE_LIST.includes(cmd):
-                if(parameter == undefined) {
-                    this.player.skip(message);
-                    return ACTION_LIST.SKIP.STATUS_HANDLE(message.author.username);
-                }
-                break;
+            case ACTION_LIST.SKIP.INVOKE_LIST.includes(cmd) || ACTION_LIST.SKIP.SHORTCUT_INVOKE.includes(cmd):
+                this.player.skip(message);
+                return ACTION_LIST.SKIP.STATUS_HANDLE(message.author.username);
             case ACTION_LIST.EIGTH_D.INVOKE_LIST.includes(cmd):
                 let filter = this.player.getQueue(message).filters;
                 let flag = ACTION_LIST.EIGTH_D.STATUS_FLAG(parameter);
@@ -39,18 +36,31 @@ class ActionHandler {
     }
     
     processNaturalLanguage(message, cmdQuery, botName) {
-        // figure out if dj_bot is a subject
-        cmdQuery = cmdQuery.toLowerCase();
-        cmdQuery = cmdQuery.split("([.,!?:;'\"-]|\\s)+')");
+        // make the string into uppercase and remove all puncutions
+        const punctRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+        const spaceRegex = /\s+/;
+        cmdQuery = cmdQuery.toUpperCase();
+        cmdQuery = cmdQuery.replace(punctRegex, '');
+        const tokens = cmdQuery.split(spaceRegex);
+        
+        const nameIndex = tokens.indexOf(botName);
+        let commandStatus = undefined;
 
-        if(!cmdQuery.includes(botName))
+        if(nameIndex == -1)
             return ACTION_LIST.NULL.STATUS_HANDLE();
 
-        let cmdRequested = undefined
-        for(actionType in ACTION_LIST)
-            console.log(actionType);
-        return ACTION_LIST.NULL.STATUS_HANDLE();
-        
+        const actionTypes = Object.values(ACTION_LIST);
+        for(let i = nameIndex+1; i < tokens.length && commandStatus == undefined; i++) {
+            for(const actionType of actionTypes)
+                if(actionType.INVOKE_LIST != undefined && actionType.INVOKE_LIST.includes(tokens[i])) {
+                    commandStatus = this.processAction(message, tokens.slice(i).join(' '));
+                    break;
+                }
+        }
+
+        if(commandStatus == undefined)
+            return ACTION_LIST.NULL.STATUS_HANDLE();
+        return commandStatus;
     }
 
     _getTokens(query) {
