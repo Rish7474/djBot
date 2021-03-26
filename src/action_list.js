@@ -18,7 +18,7 @@ ACTION_LIST = {
     PAUSE:{
             TYPE: 'PAUSE',
             STATUS_HANDLE: (user) => {
-    
+                return [0, `${user} paused the song`];
             },
             INVOKE_LIST: ['HALT', 'PAUSE'],
             SHORTCUT_INVOKE: ['H', 'PS']
