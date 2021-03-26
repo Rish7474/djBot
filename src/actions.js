@@ -22,12 +22,19 @@ class ActionHandler {
                     return ACTION_LIST.ADD.STATUS_HANDLE(parameter.toLowerCase(), message.author.username);
                 }
                 break;
+
             case ACTION_LIST.SKIP.INVOKE_LIST.includes(cmd) || ACTION_LIST.SKIP.SHORTCUT_INVOKE.includes(cmd):
                 this.player.skip(message);
                 return ACTION_LIST.SKIP.STATUS_HANDLE(message.author.username);
+
             case ACTION_LIST.PAUSE.INVOKE_LIST.includes(cmd) || ACTION_LIST.PAUSE.SHORTCUT_INVOKE.includes(cmd):
                 this.player.pause(message);
                 return ACTION_LIST.PAUSE.STATUS_HANDLE(message.author.username);
+
+            case ACTION_LIST.RESUME.INVOKE_LIST.includes(cmd) || ACTION_LIST.RESUME.SHORTCUT_INVOKE.includes(cmd):
+                this.player.resume(message);
+                return ACTION_LIST.RESUME.STATUS_HANDLE(message.author.username);
+            
             case ACTION_LIST.EIGTH_D.INVOKE_LIST.includes(cmd):
                 let filter = this.player.getQueue(message).filters;
                 let flag = ACTION_LIST.EIGTH_D.STATUS_FLAG(parameter);

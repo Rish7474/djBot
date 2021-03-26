@@ -4,7 +4,7 @@ ACTION_LIST = {
             STATUS_HANDLE: (songName, user) => {
                 return [0, `${songName} was added to the queue (requested by ${user})`];
             },
-            INVOKE_LIST: ['ADD', 'PLAY', 'START'],
+            INVOKE_LIST: ['ADD', 'PLAY'],
             SHORTCUT_INVOKE: ['A', 'P']
     },
     SKIP:{
@@ -22,7 +22,15 @@ ACTION_LIST = {
             },
             INVOKE_LIST: ['HALT', 'PAUSE'],
             SHORTCUT_INVOKE: ['H', 'PS']
-    }, 
+    },
+    RESUME:{
+        TYPE: 'RESUME',
+        STATUS_HANDLE: (user) => {
+            return [0, `${user} resumed the song`];
+        },
+        INVOKE_LIST: ['START', 'RESUME'],
+        SHORTCUT_INVOKE: ['R', 'ST']
+    },
     EIGTH_D:{
             TYPE: '8D',
             STATUS_HANDLE: (flag) => {
