@@ -14,6 +14,14 @@ ACTION_LIST = {
             },
             INVOKE_LIST: ['S', 'SKIP'],
             SHORTCUT_INVOKE: ['S']
+    },
+    PAUSE:{
+            TYPE: 'PAUSE',
+            STATUS_HANDLE: (user) => {
+    
+            },
+            INVOKE_LIST: ['HALT', 'PAUSE'],
+            SHORTCUT_INVOKE: ['H', 'PS']
     }, 
     EIGTH_D:{
             TYPE: '8D',
