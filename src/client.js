@@ -14,7 +14,7 @@ client.on('ready', () => {
     console.log(`${client.user.tag} is online`);
 });
 
-client.on('message', (message) => {
+client.on('message', async (message) => {
     if(!message.author.bot) {
         if (message.content[0] === process.env.INVOKE_TAG) {
             let cmdQuery = message.content.substring(1);
@@ -27,7 +27,6 @@ client.on('message', (message) => {
             if(status[0] != undefined)
                 message.channel.send(status[1]);
         }
-            
     }
 });
 
