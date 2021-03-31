@@ -2,6 +2,23 @@
  djBot is a simple Discord Bot that plays desired music in voice channels.
 djBot works by searching for the requested song names on YouTube.com and streaming the audio of the first result to the voice channel. 
 
+## How to Get it Running:
+
+1. Download the src folder and the .env file from the repo
+2. Download Node.js and npm [website link](https://nodejs.org/en/download/)
+    * [Windows 10: video tuturial to download Node.js and npm](https://youtu.be/X-FPCwZFU_8)
+    * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
+4. Make a Node.js project directory locally
+    * Add the downloaded src folder and .env file to the project directory
+    * In a terminal and in the project directory run the following command: ``` npm init -y```
+    * Install all the modules that stated in this repo's package.json file. Example install: ``` npm install discord.js ```
+5. Setup Discord Application
+    * Visit [Discord Dev Protal](https://discord.com/developers/applications) and make a new application
+    * Go to the Bot tab once your in the Application page and add a bot
+    * Copy the Bot Token and set the 'DISCORDJS_BOT_TOKEN' variable equal to that token
+    * 
+6. Add the Discord bot from you Discord Application to your server
+    * [video tutorial for adding a bot to a server](https://youtu.be/ypSSUTuh6SQ)
 ## Commands:
 ### Standard Command Format:
 
