@@ -42,7 +42,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
 
 
 ### Natural Language Commands
-djBot is abled to be controlled in natural language. Do so call the bot's name and the requested command.
+djBot is abled to be controlled in natural language. Do so call the bot's name and desire command (and parameter) afterwards.
 > **_Example Command:_** 'Hey djBot can you please add the song Darude Sandstorm please.'
 
 > **_Example Command:_** 'djbot skip the current song now!'
