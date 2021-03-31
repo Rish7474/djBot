@@ -4,7 +4,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
 
 ## How to Get it Running:
 
-1. Download the src folder and the .env file from the repo
+1. Download the [src](src) folder and the [.env](.env) file from the repo
 2. Download Node.js and npm ([website link](https://nodejs.org/en/download/))
     * [Windows 10: video tuturial to download Node.js and npm](https://youtu.be/X-FPCwZFU_8)
     * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
@@ -15,7 +15,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
 4. Setup Discord Application
     * Visit [Discord Dev Protal](https://discord.com/developers/applications) and make a new application
     * Go to the Bot tab once your in the Application page and add a bot
-    * Copy the Bot Token and set the 'DISCORDJS_BOT_TOKEN' variable equal to that token
+    * Copy the Bot Token and set the 'DISCORDJS_BOT_TOKEN' variable equal to that token in your .env file
 5. Add the Discord bot from you Discord Application to your server
     * [video tutorial for adding a bot to a server](https://youtu.be/ypSSUTuh6SQ)
 6. Run the program
