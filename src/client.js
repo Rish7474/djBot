@@ -15,7 +15,6 @@ client.on('ready', () => {
 });
 
 
-
 client.on('message', async (eventInfo) => {
     if(!eventInfo.author.bot) {
         if (eventInfo.content[0] === process.env.INVOKE_TAG) {
