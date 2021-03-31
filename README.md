@@ -10,7 +10,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
     * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
 4. Make a Node.js project directory locally
     * Add the downloaded src folder and .env file to the project directory
-    * In a terminal and in the project directory run the following command: ``` npm init -y```
+    * In a terminal/command prompt, go to the project directory run the following command: ``` npm init -y```
     * Install all the modules that stated in this repo's package.json file. Example install: ``` npm install discord.js ```
 5. Setup Discord Application
     * Visit [Discord Dev Protal](https://discord.com/developers/applications) and make a new application
