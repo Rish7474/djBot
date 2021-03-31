@@ -4,12 +4,12 @@ djBot works by searching for the requested song names on YouTube.com and streami
 
 ## How to Get it Running:
 
-1. Download the project directory
+1. Download the repo
 2. Download Node.js and npm ([website link](https://nodejs.org/en/download/))
     * [Windows 10: video tuturial to download Node.js and npm](https://youtu.be/X-FPCwZFU_8)
     * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
 3. Install Dependencies:
-    * Open terminal/command prompt and go to the project directory
+    * Open terminal/command prompt and go to the project directory (this directory should contain a src folder)
     * Type the following command into the terminal: ``` npm install ```
 4. Setup Discord Application
     * Visit [Discord Dev Protal](https://discord.com/developers/applications) and make a new application
