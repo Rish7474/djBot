@@ -70,7 +70,7 @@ djBot is abled to be controlled in natural language. To do so, call the bot's na
 
 
 ## Notable External Libraries:
-  - ##### Discord.js ([documentation](https://discord.js.org/#/)): Used to interface with Discord API
-  - ##### discord-player ([documentation](https://www.npmjs.com/package/discord-player)): Used to get songs and handle queue
+  - #### Discord.js ([documentation](https://discord.js.org/#/)): Used to interface with Discord API
+  - #### discord-player ([documentation](https://www.npmjs.com/package/discord-player)): Used to get songs and handle queue
 
-##### Author: Rishabh Mehta
+**Author: Rishabh Mehta**
