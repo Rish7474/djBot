@@ -1,6 +1,6 @@
 # djBot
  djBot is a simple Discord Bot that plays desired music in voice channels.
-djBot works by searching for the requested by the users on YouTube.com and streaming the audio of the first result to the voice channel. 
+djBot works by searching for the requested song names on YouTube.com and streaming the audio of the first result to the voice channel. 
 
 ## Commands:
 ### Standard Command Format:
