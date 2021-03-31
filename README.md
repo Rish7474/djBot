@@ -48,6 +48,6 @@ djBot is abled to be controlled in natural language. Do so call the bot's name a
 > **_Example Command:_** 'djbot skip the current song now!'
 
 
-## External Libraries:
+## Notable External Libraries:
   - ##### Discord.js ([documentation](https://discord.js.org/#/)): Used to interface with Discord API
   - ##### discord-player ([documentation](https://www.npmjs.com/package/discord-player)): Used to get songs and handle queue
