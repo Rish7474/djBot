@@ -35,28 +35,28 @@ djBot works by searching for the requested song names on YouTube.com and streami
 > **_Example Command:_** '!pause'
 
 
-- Add
+- **Add**
   - **Adds the requested song to the end of the queue.**
   - Invoke Tags: 'add', 'play'
   - Shortcut Tags: 'a', 'p'
   - Needs Parameter (song name)
 
-- Skip
+- **Skip**
   - **Skips the current song in the queue.**
   - Invoke Tags: 'skip'
   - Shortcut Tags: 's'
 
-- Pause
+- **Pause**
   - **Pauses the current song; song won't play again until Resume command is called.**
   - Invoke Tags: 'pause', 'halt'
   - Shortcut Tags: 'ps', 'h'
 
-- Resume
+- **Resume**
   - **Resumes playing the current song.**
   - Invoke Tags: 'resume', 'start'
   - Shortcut Tags: 'r', 'st'
 
-- 8D filter
+- **8D filter**
   - **Streams all remaining songs in the queue with 8D audio filter ([learn about 8D audio](https://www.digitaltrends.com/home-theater/what-is-8d-audio/)).**
   - Invoke Tags: '8d'
   - Needs Parameter = 'off' to turn off 8D audio filter
