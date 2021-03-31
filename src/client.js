@@ -14,18 +14,20 @@ client.on('ready', () => {
     console.log(`${client.user.tag} is online`);
 });
 
-client.on('message', async (message) => {
-    if(!message.author.bot) {
-        if (message.content[0] === process.env.INVOKE_TAG) {
-            let cmdQuery = message.content.substring(1);
-            status = actions.processAction(message, cmdQuery);
-            message.channel.send(status[1]);
+
+
+client.on('message', async (eventInfo) => {
+    if(!eventInfo.author.bot) {
+        if (eventInfo.content[0] === process.env.INVOKE_TAG) {
+            let cmdQuery = eventInfo.content.substring(1);
+            status = actions.processAction(eventInfo, cmdQuery);
+            eventInfo.channel.send(status[1]);
         }
         else {
-            let cmdQuery = message.content;
-            status = actions.processNaturalLanguage(message, cmdQuery, process.env.BOT_NAME);
+            let cmdQuery = eventInfo.content;
+            status = actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
             if(status[0] != undefined)
-                message.channel.send(status[1]);
+                eventInfo.channel.send(status[1]);
         }
     }
 });

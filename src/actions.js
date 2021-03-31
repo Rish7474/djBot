@@ -1,4 +1,5 @@
 
+const { Queue } = require('discord-player');
 const ACTION_LIST = require('./action_list.js');
 
 class ActionHandler {
@@ -6,7 +7,7 @@ class ActionHandler {
         this.player = player;
     }
 
-    processAction(message, cmdQuery) {
+    processAction(eventInfo, cmdQuery) {
         if(cmdQuery.length == 0)
             return ACTION_LIST.ERROR.STATUS_HANDLE();
     
@@ -14,29 +15,28 @@ class ActionHandler {
         let cmd, parameter;
     
         [cmd, parameter] = this._getTokens(cmdQuery);
-
         switch(true) {
             case ACTION_LIST.ADD.INVOKE_LIST.includes(cmd) || ACTION_LIST.ADD.SHORTCUT_INVOKE.includes(cmd):
                 if(parameter != undefined) {
-                    this.player.play(message, parameter, true);
-                    return ACTION_LIST.ADD.STATUS_HANDLE(parameter.toLowerCase(), message.author.username);
+                    this.player.play(eventInfo, parameter, true);
+                    return ACTION_LIST.ADD.STATUS_HANDLE(parameter.toLowerCase(), eventInfo.author.username);
                 }
                 break;
 
             case ACTION_LIST.SKIP.INVOKE_LIST.includes(cmd) || ACTION_LIST.SKIP.SHORTCUT_INVOKE.includes(cmd):
-                this.player.skip(message);
-                return ACTION_LIST.SKIP.STATUS_HANDLE(message.author.username);
+                this.player.skip(eventInfo);
+                return ACTION_LIST.SKIP.STATUS_HANDLE(eventInfo.author.username);
 
             case ACTION_LIST.PAUSE.INVOKE_LIST.includes(cmd) || ACTION_LIST.PAUSE.SHORTCUT_INVOKE.includes(cmd):
-                this.player.pause(message);
-                return ACTION_LIST.PAUSE.STATUS_HANDLE(message.author.username);
+                this.player.pause(eventInfo);
+                return ACTION_LIST.PAUSE.STATUS_HANDLE(eventInfo.author.username);
 
             case ACTION_LIST.RESUME.INVOKE_LIST.includes(cmd) || ACTION_LIST.RESUME.SHORTCUT_INVOKE.includes(cmd):
-                this.player.resume(message);
-                return ACTION_LIST.RESUME.STATUS_HANDLE(message.author.username);
+                this.player.resume(eventInfo);
+                return ACTION_LIST.RESUME.STATUS_HANDLE(eventInfo.author.username);
             
             case ACTION_LIST.EIGTH_D.INVOKE_LIST.includes(cmd):
-                let filter = this.player.getQueue(message).filters;
+                let filter = this.player.getQueue(eventInfo).filters;
                 let flag = ACTION_LIST.EIGTH_D.STATUS_FLAG(parameter);
                 filter['8D'] = flag;
                 return ACTION_LIST.EIGTH_D.STATUS_HANDLE(flag);
@@ -45,7 +45,7 @@ class ActionHandler {
         return ACTION_LIST.ERROR.STATUS_HANDLE();
     }
     
-    processNaturalLanguage(message, cmdQuery, botName) {
+    processNaturalLanguage(eventInfo, cmdQuery, botName) {
         // make the string into uppercase and remove all puncutions
         const punctRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
         const spaceRegex = /\s+/;
@@ -63,7 +63,7 @@ class ActionHandler {
         for(let i = nameIndex+1; i < tokens.length && commandStatus == undefined; i++) {
             for(const actionType of actionTypes)
                 if(actionType.INVOKE_LIST != undefined && actionType.INVOKE_LIST.includes(tokens[i])) {
-                    commandStatus = this.processAction(message, tokens.slice(i).join(' '));
+                    commandStatus = this.processAction(eventInfo, tokens.slice(i).join(' '));
                     break;
                 }
         }
@@ -95,6 +95,7 @@ class ActionHandler {
         return [cmd, parameter];
         
     };
+
 };
 
 module.exports = ActionHandler;
