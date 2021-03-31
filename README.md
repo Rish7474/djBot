@@ -22,7 +22,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
     * Open terminal/command prompt
     * Go to the project directory
     * Enter the following command: ```node ./src/client.js```
-7. To continue getting updated versions of the bot replaced the current src folder with a updated one from this repo and install new dependencies.
+7. To continue getting updated versions of the bot replaced the current src folder in your project directory with a updated one from this repo and install new dependencies.
 
 ## Commands:
 ### Standard Command Format:
