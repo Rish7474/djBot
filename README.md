@@ -5,7 +5,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
 ## How to Get it Running:
 
 1. Download the src folder and the .env file from the repo
-2. Download Node.js and npm [website link](https://nodejs.org/en/download/)
+2. Download Node.js and npm ([website link](https://nodejs.org/en/download/))
     * [Windows 10: video tuturial to download Node.js and npm](https://youtu.be/X-FPCwZFU_8)
     * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
 3. Make a Node.js project directory locally
