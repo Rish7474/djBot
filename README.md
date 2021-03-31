@@ -21,6 +21,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
     * Open terminal/command prompt
     * Go to the project directory
     * Enter the following command: ```node ./src/client.js```
+    * ##### djBot will only execute commands if the user is in a voice channel
 
 ## Commands:
 ### Standard Command Format:
