@@ -8,17 +8,21 @@ djBot works by searching for the requested song names on YouTube.com and streami
 2. Download Node.js and npm [website link](https://nodejs.org/en/download/)
     * [Windows 10: video tuturial to download Node.js and npm](https://youtu.be/X-FPCwZFU_8)
     * [MacOS: video tuturial to download Node.js and npm](https://youtu.be/rF1ZHmqvm8I)
-4. Make a Node.js project directory locally
+3. Make a Node.js project directory locally
     * Add the downloaded src folder and .env file to the project directory
     * In a terminal/command prompt, go to the project directory run the following command: ``` npm init -y```
-    * Install all the modules that stated in this repo's package.json file. Example install: ``` npm install discord.js ```
-5. Setup Discord Application
+    * Install all the modules that stated in this repo's [package.json](package.json) file under the dependencies section. Example install: ``` npm install discord.js ```
+4. Setup Discord Application
     * Visit [Discord Dev Protal](https://discord.com/developers/applications) and make a new application
     * Go to the Bot tab once your in the Application page and add a bot
     * Copy the Bot Token and set the 'DISCORDJS_BOT_TOKEN' variable equal to that token
-    * 
-6. Add the Discord bot from you Discord Application to your server
+5. Add the Discord bot from you Discord Application to your server
     * [video tutorial for adding a bot to a server](https://youtu.be/ypSSUTuh6SQ)
+6. Run the program
+    * Open terminal/command prompt
+    * Go to the project directory
+    * Enter the following command: ```node ./src/client.js```
+ 
 ## Commands:
 ### Standard Command Format:
 
