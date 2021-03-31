@@ -10,21 +10,39 @@ djBot works by searching for the requested by the users on YouTube.com and strea
 2. '![command] [parameter]'
 
 > **_Example Command:_** '!add Darude Sandstorm'
+ 
+> **_Example Command:_** '!pause'
 
-- Add a Song to the Queue
+
+- Add
   - ##### Adds the requested song to the end of the queue.
   - Invoke Tags: 'add', 'play'
   - Shortcut Tags: 'a', 'p'
   - Needs Parameter (song name)
 
-- Skip a Song in the Queue
+- Skip
   - ##### Skips the current song in the queue.
   - Invoke Tags: 'skip'
   - Shortcut Tags: 's'
 
-- Pause Current Song
+- Pause
   - ##### Pauses the current song; song won't play again until Resume command is called.
-  - Invoke Tags: 'pause', 'stop'
-  - Shortcut Tags: 'ps'
+  - Invoke Tags: 'pause', 'halt'
+  - Shortcut Tags: 'ps', 'h'
+
+- Resume
+  - ##### Resumes playing the current song.
+  - Invoke Tags: 'resume', 'start'
+  - Shortcut Tags: 'r', 'st'
+
+- 8D filter
+  - ##### Streams all remaining songs in the queue with 8D audio filter ([learn more about 8D audio](https://www.digitaltrends.com/home-theater/what-is-8d-audio/)).
+  - Invoke Tags: '8d'
+  - Needs Parameter = 'off' to turn off 8D audio filter
 
 
+### Natural Language Commands
+djBot is abled to be controlled in natural language. Do so call the bot's name and the requested command.
+> **_Example Command:_** 'Hey djBot can you please add the song Darude Sandstorm please.'
+
+> **_Example Command:_** 'djbot skip the current song now!'
