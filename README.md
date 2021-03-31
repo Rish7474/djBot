@@ -36,7 +36,7 @@ djBot works by searching for the requested song names on YouTube.com and streami
   - Shortcut Tags: 'r', 'st'
 
 - 8D filter
-  - ##### Streams all remaining songs in the queue with 8D audio filter ([learn more about 8D audio](https://www.digitaltrends.com/home-theater/what-is-8d-audio/)).
+  - ##### Streams all remaining songs in the queue with 8D audio filter ([learn about 8D audio](https://www.digitaltrends.com/home-theater/what-is-8d-audio/)).
   - Invoke Tags: '8d'
   - Needs Parameter = 'off' to turn off 8D audio filter
 
