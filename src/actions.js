@@ -17,6 +17,7 @@ class ActionHandler {
         [cmd, parameter] = this._getTokens(cmdQuery);
         cmd = cmd.toUpperCase();
         switch(true) {
+            
             case ACTION_LIST.ADD.INVOKE_LIST.includes(cmd) || ACTION_LIST.ADD.SHORTCUT_INVOKE.includes(cmd):
                 if(parameter != undefined) {
                     this.player.play(eventInfo, parameter, true);
@@ -27,13 +28,16 @@ class ActionHandler {
             case ACTION_LIST.PLAYLIST.INVOKE_LIST.includes(cmd) || ACTION_LIST.PLAYLIST.SHORTCUT_INVOKE.includes(cmd):
                 if(parameter != undefined) {
                     const playlistToken = parseSpotifyURI(parameter);
-                    spotifyHandler.getPlaylist(playlistToken).then(data => {
+                    return spotifyHandler.getPlaylist(playlistToken).then(data => {
                         const playlist = data.body.tracks.items;
                         playlist.forEach(song => {
-                            this.player.play(eventInfo, song.track.name, true);
+                            if(song.track != undefined && song.track != null) {
+                                const songQuery = song.track.name + ' ' + song.track.artists[0].name;
+                                this.player.play(eventInfo, songQuery, true);
+                            }
                         });
-                    }, err => {});
-                    return ACTION_LIST.PLAYLIST.STATUS_HANDLE(eventInfo.author.username);
+                        return ACTION_LIST.PLAYLIST.STATUS_HANDLE(data.body.name, eventInfo.author.username);
+                    }, err => { return ACTION_LIST.ERROR.STATUS_HANDLE();});
                 }
                 break;
 
@@ -45,7 +49,8 @@ class ActionHandler {
                     }).then(data => {
                         const recommendations = data.body.tracks;
                         recommendations.forEach(recommendation => {
-                            this.player.play(eventInfo, recommendation.name, true);
+                            const songQuery = recommendation.name + ' ' + recommendation.artists[0].name;
+                            this.player.play(eventInfo, songQuery, true);
                         });
                     }, err => {});
                     return ACTION_LIST.RADIO.STATUS_HANDLE(genre);

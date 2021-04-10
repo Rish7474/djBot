@@ -2,15 +2,15 @@ ACTION_LIST = {
     ADD:{
             TYPE: 'ADD',
             STATUS_HANDLE: (songName, user) => {
-                return [0, `${songName} was added to the queue (requested by ${user})`];
+                return Promise.resolve([0, `${songName} was added to the queue (requested by ${user})`]);
             },
             INVOKE_LIST: ['ADD', 'PLAY'],
             SHORTCUT_INVOKE: ['A', 'P']
     },
     PLAYLIST:{
             TYPE: 'PLAYLIST',
-            STATUS_HANDLE: (user) => {
-                return [0, `The playlist was added to the queue (requested by ${user})`];
+            STATUS_HANDLE: (playlistName, user) => {
+                return Promise.resolve([0, `Playlist ${playlistName} was added to the queue (requested by ${user})`]);
             },
             INVOKE_LIST: ['PLAYLIST'],
             SHORTCUT_INVOKE: ['PL']
@@ -19,8 +19,8 @@ ACTION_LIST = {
             TYPE: 'RADIO',
             STATUS_HANDLE: (genre) => {
                 if(genre != undefined)
-                    return [0, `${genre} genre radio started`];
-                return [0, `radio started`];
+                    return Promise.resolve([0, `${genre} genre radio started`]);
+                return Promise.resolve([0, `radio started`]);
             },
             INVOKE_LIST: ['RADIO'],
             SHORTCUT_INVOKE: ['RA']
@@ -28,7 +28,7 @@ ACTION_LIST = {
     SKIP:{
             TYPE: 'SKIP',
             STATUS_HANDLE: (user) => {
-                return [0, `${user} skipped the current song`];
+                return Promise.resolve([0, `${user} skipped the current song`]);
             },
             INVOKE_LIST: ['S', 'SKIP'],
             SHORTCUT_INVOKE: ['S']
@@ -36,7 +36,7 @@ ACTION_LIST = {
     PAUSE:{
             TYPE: 'PAUSE',
             STATUS_HANDLE: (user) => {
-                return [0, `${user} paused the song`];
+                return Promise.resolve([0, `${user} paused the song`]);
             },
             INVOKE_LIST: ['HALT', 'PAUSE'],
             SHORTCUT_INVOKE: ['H', 'PS']
@@ -44,7 +44,7 @@ ACTION_LIST = {
     CLEAR:{
         TYPE: 'CLEAR',
         STATUS_HANDLE: (user) => {
-            return [0, `${user} cleared the queue`];
+            return Promise.resolve([0, `${user} cleared the queue`]);
         },
         INVOKE_LIST: ['DELETE', 'CLEAR'],
         SHORTCUT_INVOKE: ['CLS', 'DEL']
@@ -52,7 +52,7 @@ ACTION_LIST = {
     RESUME:{
             TYPE: 'RESUME',
             STATUS_HANDLE: (user) => {
-                return [0, `${user} resumed the song`];
+                return Promise.resolve([0, `${user} resumed the song`]);
             },
             INVOKE_LIST: ['START', 'RESUME'],
             SHORTCUT_INVOKE: ['R', 'ST']
@@ -61,8 +61,8 @@ ACTION_LIST = {
             TYPE: '8D',
             STATUS_HANDLE: (flag) => {
                 if(flag)
-                    return [0, '8D filter will be on for rest of the songs in the queue'];
-                return [0, '8D filter will be off for rest of the songs in the queue'];
+                    return Promise.resolve([0, '8D filter will be on for rest of the songs in the queue']);
+                return Promise.resolve([0, '8D filter will be off for rest of the songs in the queue']);
             },
             INVOKE_LIST: ['8D'],
             SHORTCUT_INVOKE: undefined,
@@ -74,7 +74,7 @@ ACTION_LIST = {
     ERROR:{
             TYPE: 'ERROR',
             STATUS_HANDLE: () => {
-                return [1, "The requested command is invalid"];
+                return Promise.resolve([1, "The requested command is invalid"]);
             },
             INVOKE_LIST: undefined,
             SHORTCUT_INVOKE: undefined
@@ -82,7 +82,7 @@ ACTION_LIST = {
     NULL:{
             TYPE: 'NULL',
             STATUS_HANDLE: () => {
-                return [undefined, undefined]
+                return Promise.resolve([undefined, undefined])
             },
             INVOKE_LIST: undefined,
             SHORTCUT_INVOKE: undefined

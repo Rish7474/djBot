@@ -18,12 +18,12 @@ client.on('message', async (eventInfo) => {
     if(!eventInfo.author.bot) {
         if (eventInfo.content[0] === process.env.INVOKE_TAG) {
             let cmdQuery = eventInfo.content.substring(1);
-            status = actions.processAction(eventInfo, cmdQuery);
+            status = await actions.processAction(eventInfo, cmdQuery);
             eventInfo.channel.send(status[1]);
         }
         else {
             let cmdQuery = eventInfo.content;
-            status = actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
+            status = await actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
             if(status[0] != undefined)
                 eventInfo.channel.send(status[1]);
         }
