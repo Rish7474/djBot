@@ -37,6 +37,21 @@ class ActionHandler {
                 }
                 break;
 
+            case ACTION_LIST.RADIO.INVOKE_LIST.includes(cmd) || ACTION_LIST.RADIO.SHORTCUT_INVOKE.includes(cmd):
+                if(parameter != undefined) {        
+                    const genre = parameter.toLowerCase();
+                    spotifyHandler.getRecommendations({
+                        seed_genres: [genre]
+                    }).then(data => {
+                        const recommendations = data.body.tracks;
+                        recommendations.forEach(recommendation => {
+                            this.player.play(eventInfo, recommendation.name, true);
+                        });
+                    }, err => {});
+                    return ACTION_LIST.RADIO.STATUS_HANDLE(genre);
+                }
+                break;
+
             case ACTION_LIST.SKIP.INVOKE_LIST.includes(cmd) || ACTION_LIST.SKIP.SHORTCUT_INVOKE.includes(cmd):
                 this.player.skip(eventInfo);
                 return ACTION_LIST.SKIP.STATUS_HANDLE(eventInfo.author.username);
@@ -44,6 +59,10 @@ class ActionHandler {
             case ACTION_LIST.PAUSE.INVOKE_LIST.includes(cmd) || ACTION_LIST.PAUSE.SHORTCUT_INVOKE.includes(cmd):
                 this.player.pause(eventInfo);
                 return ACTION_LIST.PAUSE.STATUS_HANDLE(eventInfo.author.username);
+
+            case ACTION_LIST.CLEAR.INVOKE_LIST.includes(cmd) || ACTION_LIST.CLEAR.SHORTCUT_INVOKE.includes(cmd):
+                this.player.clearQueue(eventInfo);
+                return ACTION_LIST.CLEAR.STATUS_HANDLE(eventInfo.author.username);
 
             case ACTION_LIST.RESUME.INVOKE_LIST.includes(cmd) || ACTION_LIST.RESUME.SHORTCUT_INVOKE.includes(cmd):
                 this.player.resume(eventInfo);

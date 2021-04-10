@@ -17,8 +17,10 @@ ACTION_LIST = {
     },   
     RADIO:{
             TYPE: 'RADIO',
-            STATUS_HANDLE: () => {
-                return [0, `spotify test`];
+            STATUS_HANDLE: (genre) => {
+                if(genre != undefined)
+                    return [0, `${genre} genre radio started`];
+                return [0, `radio started`];
             },
             INVOKE_LIST: ['RADIO'],
             SHORTCUT_INVOKE: ['RA']
@@ -38,6 +40,14 @@ ACTION_LIST = {
             },
             INVOKE_LIST: ['HALT', 'PAUSE'],
             SHORTCUT_INVOKE: ['H', 'PS']
+    },
+    CLEAR:{
+        TYPE: 'CLEAR',
+        STATUS_HANDLE: (user) => {
+            return [0, `${user} cleared the queue`];
+        },
+        INVOKE_LIST: ['DELETE', 'CLEAR'],
+        SHORTCUT_INVOKE: ['CLS', 'DEL']
     },
     RESUME:{
             TYPE: 'RESUME',

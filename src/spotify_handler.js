@@ -17,7 +17,7 @@ function setAccessToken(spotifyHandler) {
 
 function parseSpotifyURI(uri) {
     const spotifyTag = /(spotify:)([a-zA-Z0-9]*:)/g;
-    return uri.replace(spotifyTag, "");
+    return uri.replace(spotifyTag, '');
 }
 
 let spotifyHandler = new SpotifyWebApi({
