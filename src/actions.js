@@ -1,6 +1,7 @@
 
 const { Queue } = require('discord-player');
 const ACTION_LIST = require('./action_list.js');
+const {spotifyHandler, parseSpotifyURI} = require('./spotify_handler.js');
 
 class ActionHandler {
     constructor(player = {}) {
@@ -11,15 +12,28 @@ class ActionHandler {
         if(cmdQuery.length == 0)
             return ACTION_LIST.ERROR.STATUS_HANDLE();
     
-        cmdQuery = cmdQuery.toUpperCase();
         let cmd, parameter;
     
         [cmd, parameter] = this._getTokens(cmdQuery);
+        cmd = cmd.toUpperCase();
         switch(true) {
             case ACTION_LIST.ADD.INVOKE_LIST.includes(cmd) || ACTION_LIST.ADD.SHORTCUT_INVOKE.includes(cmd):
                 if(parameter != undefined) {
                     this.player.play(eventInfo, parameter, true);
                     return ACTION_LIST.ADD.STATUS_HANDLE(parameter.toLowerCase(), eventInfo.author.username);
+                }
+                break;
+
+            case ACTION_LIST.PLAYLIST.INVOKE_LIST.includes(cmd) || ACTION_LIST.PLAYLIST.SHORTCUT_INVOKE.includes(cmd):
+                if(parameter != undefined) {
+                    const playlistToken = parseSpotifyURI(parameter);
+                    spotifyHandler.getPlaylist(playlistToken).then(data => {
+                        const playlist = data.body.tracks.items;
+                        playlist.forEach(song => {
+                            this.player.play(eventInfo, song.track.name, true);
+                        });
+                    }, err => {});
+                    return ACTION_LIST.PLAYLIST.STATUS_HANDLE(eventInfo.author.username);
                 }
                 break;
 

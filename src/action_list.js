@@ -7,6 +7,22 @@ ACTION_LIST = {
             INVOKE_LIST: ['ADD', 'PLAY'],
             SHORTCUT_INVOKE: ['A', 'P']
     },
+    PLAYLIST:{
+            TYPE: 'PLAYLIST',
+            STATUS_HANDLE: (user) => {
+                return [0, `The playlist was added to the queue (requested by ${user})`];
+            },
+            INVOKE_LIST: ['PLAYLIST'],
+            SHORTCUT_INVOKE: ['PL']
+    },   
+    RADIO:{
+            TYPE: 'RADIO',
+            STATUS_HANDLE: () => {
+                return [0, `spotify test`];
+            },
+            INVOKE_LIST: ['RADIO'],
+            SHORTCUT_INVOKE: ['RA']
+    },
     SKIP:{
             TYPE: 'SKIP',
             STATUS_HANDLE: (user) => {
@@ -24,12 +40,12 @@ ACTION_LIST = {
             SHORTCUT_INVOKE: ['H', 'PS']
     },
     RESUME:{
-        TYPE: 'RESUME',
-        STATUS_HANDLE: (user) => {
-            return [0, `${user} resumed the song`];
-        },
-        INVOKE_LIST: ['START', 'RESUME'],
-        SHORTCUT_INVOKE: ['R', 'ST']
+            TYPE: 'RESUME',
+            STATUS_HANDLE: (user) => {
+                return [0, `${user} resumed the song`];
+            },
+            INVOKE_LIST: ['START', 'RESUME'],
+            SHORTCUT_INVOKE: ['R', 'ST']
     },
     EIGTH_D:{
             TYPE: '8D',
@@ -41,6 +57,7 @@ ACTION_LIST = {
             INVOKE_LIST: ['8D'],
             SHORTCUT_INVOKE: undefined,
             STATUS_FLAG: (switchInput) => {
+                switchInput = switchInput.toUpperCase();
                 return switchInput == undefined || switchInput == 'ON';
             }
     },

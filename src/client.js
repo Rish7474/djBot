@@ -7,13 +7,12 @@ const client = new Client();
 const { Player } = require('discord-player');
 client.player = new Player(client);
 
-const ActionHandler  = require('./actions.js');
+const ActionHandler = require('./actions.js');
 actions = new ActionHandler(client.player);
 
 client.on('ready', () => {
     console.log(`${client.user.tag} is online`);
 });
-
 
 client.on('message', async (eventInfo) => {
     if(!eventInfo.author.bot) {
