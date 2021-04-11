@@ -19,6 +19,7 @@
     "ffmpeg-static": "^4.2.8",
     "googleapis": "^68.0.0",
     "mongoose": "^5.12.3",
+    "node-cron": "^3.0.0",
     "spotify-web-api-node": "^5.0.2"
   }
 }

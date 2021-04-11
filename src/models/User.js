@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
-  discord_id: {
-    type: Number,
+  discord_username: {
+    type: String,
+    required: true,
     default: "",
   },
   is_banned: {
@@ -11,9 +12,11 @@ const UserSchema = mongoose.Schema({
   },
   unban_time: {
     type: Number,
+    default: 0,
   },
-  server_id: {
-    type: Number,
+  discord_server_id: {
+    type: String,
+    required: true,
   },
 });
 

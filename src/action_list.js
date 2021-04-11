@@ -1,3 +1,5 @@
+const { banUser } = require("./db");
+
 ACTION_LIST = {
   ADD: {
     TYPE: "CMD",
@@ -83,7 +85,7 @@ ACTION_LIST = {
             player.play(eventInfo, songQuery, true);
           });
         },
-        (err) => {}
+        (err) => { }
       );
 
       return ACTION_LIST.RADIO.STATUS_HANDLE(genre);
@@ -206,8 +208,21 @@ ACTION_LIST = {
     TYPE: "CMD",
     INVOKE_LIST: ["BAN"],
     SHORTCUT_INVOKE: [],
-    EXECUTE: (player, eventInfo, flag, spotifyPackage = undefined) => {
-      console.log(eventInfo);
+    STATUS_HANDLE: (bannedUser, admin, time) => {
+      if (time !== -1) {
+        return Promise.resolve([0, `${admin} has banned ${bannedUser} for ${time} minutes.`])
+      }
+      return Promise.resolve([0, `${admin} has banned ${bannedUser} indefinitely.`])
+    },
+    EXECUTE: (player, eventInfo, param, spotifyPackage = undefined) => {
+      const splitArgs = param.split(" ");
+      const userToBan = splitArgs[0];
+      const timeToBan = splitArgs.length === 1 ? -1 : splitArgs[1];
+      const serverId = eventInfo.guild.id;
+
+      banUser(userToBan, timeToBan, serverId);
+      const admin = eventInfo.author.username;
+      return ACTION_LIST.BAN.STATUS_HANDLE(admin, userToBan, timeToBan);
     },
   },
 };
