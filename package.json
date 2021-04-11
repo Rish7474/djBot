@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.2.8",
     "googleapis": "^68.0.0",
+    "mongoose": "^5.12.3",
     "spotify-web-api-node": "^5.0.2"
   }
 }
