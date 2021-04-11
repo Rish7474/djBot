@@ -2,7 +2,7 @@ ACTION_LIST = {
     ADD:{
             TYPE: 'CMD',
             STATUS_HANDLE: (songName, user) => {
-                return Promise.resolve([0, `${songName} was added to the queue (requested by ${user})`]);
+                return Promise.resolve([0, `\`\`\`${songName} was added to the queue (requested by ${user})\`\`\``]);
             },
             INVOKE_LIST: ['ADD', 'PLAY'],
             SHORTCUT_INVOKE: ['A', 'P'],
@@ -17,7 +17,7 @@ ACTION_LIST = {
     PLAYLIST:{
             TYPE: 'CMD',
             STATUS_HANDLE: (playlistName, user) => {
-                return Promise.resolve([0, `Playlist ${playlistName} was added to the queue (requested by ${user})`]);
+                return Promise.resolve([0, `\`\`\`Playlist ${playlistName} was added to the queue (requested by ${user})\`\`\``]);
             },
             INVOKE_LIST: ['PLAYLIST'],
             SHORTCUT_INVOKE: ['PL'],
@@ -47,8 +47,8 @@ ACTION_LIST = {
             TYPE: 'CMD',
             STATUS_HANDLE: (genre) => {
                 if(genre)
-                    return Promise.resolve([0, `${genre} genre radio started`]);
-                return Promise.resolve([0, `radio started`]);
+                    return Promise.resolve([0, `\`\`\`${genre} radio started\`\`\``]);
+                return Promise.resolve([0, `\`\`\`radio started\`\`\``]);
             },
             INVOKE_LIST: ['RADIO'],
             SHORTCUT_INVOKE: ['RA'],
@@ -62,7 +62,7 @@ ACTION_LIST = {
                 spotifyHandler.getRecommendations(recommendationParam).then(data => {
                     const recommendations = data.body.tracks;
                     recommendations.forEach(recommendation => {
-                        const songQuery = `${recommendation.name}  ${recommendation.artists[0].name}`;
+                        const songQuery = `\`\`\`${recommendation.name}  ${recommendation.artists[0].name}\`\`\``;
                         player.play(eventInfo, songQuery, true);
                     });
                 }, err => {} );
@@ -73,7 +73,7 @@ ACTION_LIST = {
     SKIP:{
             TYPE: 'CMD',
             STATUS_HANDLE: (user) => {
-                return Promise.resolve([0, `${user} skipped the current song`]);
+                return Promise.resolve([0, `\`\`\`${user} skipped the current song\`\`\``]);
             },
             INVOKE_LIST: ['S', 'SKIP'],
             SHORTCUT_INVOKE: ['S'],
@@ -85,7 +85,7 @@ ACTION_LIST = {
     PAUSE:{
             TYPE: 'CMD',
             STATUS_HANDLE: (user) => {
-                return Promise.resolve([0, `${user} paused the song`]);
+                return Promise.resolve([0, `\`\`\`${user} paused the song\`\`\``]);
             },
             INVOKE_LIST: ['HALT', 'PAUSE'],
             SHORTCUT_INVOKE: ['H', 'PS'],
@@ -97,7 +97,7 @@ ACTION_LIST = {
     CLEAR:{
         TYPE: 'CMD',
         STATUS_HANDLE: (user) => {
-            return Promise.resolve([0, `${user} cleared the queue`]);
+            return Promise.resolve([0, `\`\`\`${user} cleared the queue\`\`\``]);
         },
         INVOKE_LIST: ['DELETE', 'CLEAR'],
         SHORTCUT_INVOKE: ['CLS', 'DEL'],
@@ -109,7 +109,7 @@ ACTION_LIST = {
     RESUME:{
             TYPE: 'CMD',
             STATUS_HANDLE: (user) => {
-                return Promise.resolve([0, `${user} resumed the song`]);
+                return Promise.resolve([0, `\`\`\`${user} resumed the song\`\`\``]);
             },
             INVOKE_LIST: ['START', 'RESUME'],
             SHORTCUT_INVOKE: ['R', 'ST'],
@@ -122,8 +122,8 @@ ACTION_LIST = {
             TYPE: 'CMD',
             STATUS_HANDLE: (flag) => {
                 if(flag)
-                    return Promise.resolve([0, '8D filter will be on for rest of the songs in the queue']);
-                return Promise.resolve([0, '8D filter will be off for rest of the songs in the queue']);
+                    return Promise.resolve([0, `\`\`\`8D filter will be on for rest of the songs in the queue\`\`\``]);
+                return Promise.resolve([0, `\`\`\`8D filter will be off for rest of the songs in the queue\`\`\``]);
             },
             INVOKE_LIST: ['8D'],
             SHORTCUT_INVOKE: [],
@@ -137,7 +137,7 @@ ACTION_LIST = {
     ERROR:{
             TYPE: 'ERROR',
             STATUS_HANDLE: () => {
-                return Promise.resolve([1, "The requested command is invalid"]);
+                return Promise.resolve([1, `\`\`\`The requested command is invalid\`\`\``]);
             },
             INVOKE_LIST: undefined,
             SHORTCUT_INVOKE: undefined,
