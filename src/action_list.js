@@ -1,3 +1,5 @@
+const { admin } = require("googleapis/build/src/apis/admin");
+
 ACTION_LIST = {
     ADD:{
             TYPE: 'CMD',
@@ -147,6 +149,18 @@ ACTION_LIST = {
         EXECUTE: (username, duration, serverID, ban) => {
             ban(username, duration, serverID);
             return ACTION_LIST.BAN.STATUS_HANDLE(username, duration);                
+        }
+    },
+    UNBAN:{
+        TYPE: 'CMD',
+        STATUS_HANDLE: (bannedUser, admin) => {
+            return Promise.resolve([0, `\`\`\`${bannedUser} is unbanned by ${admin}\`\`\``]);
+        },
+        INVOKE_LIST: ['UNBAN'],
+        SHORTCUT_INVOKE: [],
+        EXECUTE: (bannedUser, admin, serverID, unban) => {
+            unban(bannedUser, serverID);
+            return ACTION_LIST.UNBAN.STATUS_HANDLE(bannedUser, admin);
         }
     },
     ERROR:{

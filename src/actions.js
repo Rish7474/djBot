@@ -2,7 +2,7 @@
 const { Queue } = require('discord-player');
 const ACTION_LIST = require('./action_list.js');
 const SPOTIFY_PACKAGE = require('./spotify_handler.js');
-const {isBanned, ban} = require('./db_manager.js');
+const {isBanned, ban, unban} = require('./db_manager.js');
 
 class ActionHandler {
     constructor(player = {}) {
@@ -27,6 +27,9 @@ class ActionHandler {
                 return ACTION_LIST.BAN.EXECUTE(eventInfo.author.username, 1, eventInfo.guild.id, ban);
             }
         }
+        
+        if(ACTION_LIST.UNBAN.INVOKE_LIST.includes(cmd))
+            return ACTION_LIST.UNBAN.EXECUTE(parameter, eventInfo.author.username, eventInfo.guild.id, unban);
 
         const actionTypes = Object.values(ACTION_LIST);
         for(let actionType of actionTypes) {

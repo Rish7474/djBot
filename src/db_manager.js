@@ -32,6 +32,19 @@ function ban(username, duration=undefined, serverID){
     serverList.child(username.toUpperCase()).set(duration);
 };
 
+function unban(username, serverID) {
+    bannedDB.once('value', snapshot => {
+        let bannedLists = snapshot.val();
+        if(bannedList == null)
+            return;
+        if(serverID in bannedList && username.toUpperCase() in bannedLists[serverID]){
+            let unbannedRef = bannedDB.child(serverID).child(username.toUpperCase());
+            unbannedRef.remove();
+        }
+        
+    }) ; 
+};
+
 setInterval(() => {
     bannedDB.once('value', snapshot => {
         bannedLists = snapshot.val();
@@ -50,4 +63,4 @@ setInterval(() => {
     });
 }, 60000);
 
-module.exports = {isBanned, ban};
+module.exports = {isBanned, ban, unban};
