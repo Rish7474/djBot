@@ -1,6 +1,5 @@
 require('dotenv').config();
 
-
 const {Client} = require('discord.js');
 const client = new Client();
 
@@ -15,18 +14,16 @@ client.on('ready', () => {
 });
 
 client.on('message', async (eventInfo) => {
-    if(!eventInfo.author.bot) {
-        if (eventInfo.content[0] === process.env.INVOKE_TAG) {
-            let cmdQuery = eventInfo.content.substring(1);
-            status = await actions.processAction(eventInfo, cmdQuery);
+    if (eventInfo.content[0] === process.env.INVOKE_TAG) {
+        let cmdQuery = eventInfo.content.substring(1);
+        status = await actions.processAction(eventInfo, cmdQuery);
+        eventInfo.channel.send(status[1]);
+    }
+    else {
+        let cmdQuery = eventInfo.content;
+        status = await actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
+        if(status[0] != undefined)
             eventInfo.channel.send(status[1]);
-        }
-        else {
-            let cmdQuery = eventInfo.content;
-            status = await actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
-            if(status[0] != undefined)
-                eventInfo.channel.send(status[1]);
-        }
     }
 });
 

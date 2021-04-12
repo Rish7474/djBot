@@ -75,7 +75,7 @@ ACTION_LIST = {
             STATUS_HANDLE: (user) => {
                 return Promise.resolve([0, `\`\`\`${user} skipped the current song\`\`\``]);
             },
-            INVOKE_LIST: ['S', 'SKIP'],
+            INVOKE_LIST: ['SKIP'],
             SHORTCUT_INVOKE: ['S'],
             EXECUTE: (player, eventInfo, parameter=undefined, spotifyPackage=undefined) => {
                 player.skip(eventInfo);
@@ -134,10 +134,34 @@ ACTION_LIST = {
                 return ACTION_LIST.EIGTH_D.STATUS_HANDLE(flag);
             }
     },
+    BAN:{
+        TYPE: 'CMD',
+        STATUS_HANDLE: (bannedUser, duration=undefined) => {
+            if(duration == undefined) {
+                return Promise.resolve([0, `\`\`\`${bannedUser} is banned indefinately!\`\`\``]);
+            }
+            return Promise.resolve([0, `\`\`\`${bannedUser} is banned for ${duration} minutes!\`\`\``]);
+        },
+        INVOKE_LIST: ['BAN'],
+        SHORTCUT_INVOKE: [],
+        EXECUTE: (username, duration, serverID, ban) => {
+            ban(username, duration, serverID);
+            return ACTION_LIST.BAN.STATUS_HANDLE(username, duration);                
+        }
+    },
     ERROR:{
-            TYPE: 'ERROR',
+            TYPE: 'STATE',
             STATUS_HANDLE: () => {
                 return Promise.resolve([1, `\`\`\`The requested command is invalid\`\`\``]);
+            },
+            INVOKE_LIST: undefined,
+            SHORTCUT_INVOKE: undefined,
+            EXECUTE: undefined
+    },
+    BANNED:{
+            TYPE: 'STATE',
+            STATUS_HANDLE: (username) => {
+                return Promise.resolve([1, `\`\`\`${username}, you are banned!\`\`\``]);
             },
             INVOKE_LIST: undefined,
             SHORTCUT_INVOKE: undefined,
