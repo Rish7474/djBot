@@ -120,6 +120,31 @@ ACTION_LIST = {
                 return ACTION_LIST.RESUME.STATUS_HANDLE(eventInfo.author.username);
             }
     },
+    NAME:{
+            TYPE: 'CMD',
+            STATUS_HANDLE: (youtubeLink) => {
+                return Promise.resolve([0, youtubeLink]);
+            },
+            INVOKE_LIST: ['NAME'],
+            SHORTCUT_INVOKE: [],
+            EXECUTE: (player, eventInfo, parameter=undefined, spotifyPackage=undefined) => {
+                let track = player.nowPlaying(eventInfo);
+                return ACTION_LIST.NAME.STATUS_HANDLE(track.url);
+            }      
+    },
+    EXIT:{
+            TYPE: 'CMD',
+            STATUS_HANDLE: () => {
+                return Promise.resolve([0, `\`\`\`Good Bye!\`\`\``]);
+            },
+            INVOKE_LIST: ['BYE', 'LEAVE', 'CYA', 'EXIT', 'OUT'],
+            SHORTCUT_INVOKE: ['E', 'L'],
+            EXECUTE: (player, eventInfo, parameter=undefined, spotifyPackage=undefined) => {
+                player.clearQueue(eventInfo);
+                player.skip(eventInfo);
+                return ACTION_LIST.EXIT.STATUS_HANDLE();
+            }
+    },
     EIGTH_D:{
             TYPE: 'CMD',
             STATUS_HANDLE: (flag) => {
