@@ -23,11 +23,11 @@ ACTION_LIST = {
             },
             INVOKE_LIST: ['PLAYLIST'],
             SHORTCUT_INVOKE: ['PL'],
-            EXECUTE: (player, eventInfo, playlistURI, spotifyPackage) => {
-                let {spotifyHandler, parseSpotifyURI} = spotifyPackage;
+            EXECUTE: (player, eventInfo, playlistURL, spotifyPackage) => {
+                let {spotifyHandler, parseSpotifyURL} = spotifyPackage;
 
-                if(playlistURI) {
-                    const playlistToken = parseSpotifyURI(playlistURI);
+                if(playlistURL) {
+                    const playlistToken = parseSpotifyURL(playlistURL);
 
                     return spotifyHandler.getPlaylist(playlistToken).then(data => {
                         const playlist = data.body.tracks.items;

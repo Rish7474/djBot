@@ -15,9 +15,11 @@ function setAccessToken(spotifyHandler) {
     );
 }
 
-function parseSpotifyURI(uri) {
-    const spotifyTag = /(spotify:)([a-zA-Z0-9]*:)/g;
-    return uri.replace(spotifyTag, '');
+function parseSpotifyURL(url) {
+    const spotifyURL = 'https://open.spotify.com/playlist/';
+    let spotifyInfo = url.replace(spotifyURL, '');
+    querySeperatorIndex = spotifyInfo.indexOf('?');
+    return spotifyInfo.substring(0,querySeperatorIndex);
 }
 
 let spotifyHandler = new SpotifyWebApi({
@@ -29,4 +31,4 @@ let spotifyHandler = new SpotifyWebApi({
 setAccessToken(spotifyHandler);
 let timer = setInterval(setAccessToken, EXPIRE_TIME,  spotifyHandler);
 
-module.exports = {spotifyHandler, parseSpotifyURI};
+module.exports = {spotifyHandler, parseSpotifyURL};
