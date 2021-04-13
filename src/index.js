@@ -14,7 +14,6 @@ client.on('ready', () => {
 });
 
 client.on('message', async (eventInfo) => {
-    console.log('BOT: ', process.env.BOT_NAME, '-INVOKE:', process.env.INVOKE_TAG);
     if (eventInfo.content[0] === process.env.INVOKE_TAG) {
         let cmdQuery = eventInfo.content.substring(1);
         status = await actions.processAction(eventInfo, cmdQuery);
@@ -22,7 +21,7 @@ client.on('message', async (eventInfo) => {
     }
     else {
         let cmdQuery = eventInfo.content;
-        status = await actions.processNaturalLanguage(eventInfo, cmdQuery, 'DJBOT');
+        status = await actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
         if(status[0] != undefined)
             eventInfo.channel.send(status[1]);
     }
