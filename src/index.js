@@ -14,6 +14,7 @@ client.on('ready', () => {
 });
 
 client.on('message', async (eventInfo) => {
+    console.log('I here you');
     if (eventInfo.content[0] === process.env.INVOKE_TAG) {
         let cmdQuery = eventInfo.content.substring(1);
         status = await actions.processAction(eventInfo, cmdQuery);
