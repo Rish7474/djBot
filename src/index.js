@@ -22,7 +22,7 @@ client.on('message', async (eventInfo) => {
     }
     else {
         let cmdQuery = eventInfo.content;
-        status = await actions.processNaturalLanguage(eventInfo, cmdQuery, process.env.BOT_NAME);
+        status = await actions.processNaturalLanguage(eventInfo, cmdQuery, 'DJBOT');
         if(status[0] != undefined)
             eventInfo.channel.send(status[1]);
     }
