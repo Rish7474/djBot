@@ -131,7 +131,7 @@ ACTION_LIST = {
             SHORTCUT_INVOKE: [],
             EXECUTE: (player, eventInfo, flag=undefined, spotifyPackage=undefined) => {
                 if(player.getQueue(eventInfo) == undefined)
-                    return;
+                    ACTION_LIST.ERROR.STATUS_HANDLE();
                 let filter = player.getQueue(eventInfo).filters;
                 flag = flag == undefined || flag.toUpperCase() == 'ON';
                 filter['8D'] = flag;
